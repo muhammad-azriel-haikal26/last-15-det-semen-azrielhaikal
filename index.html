@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last, Pertemuan Ke 15</title>
+     <style>
+        .container {
+            text-align: center;
+            border: 10px solid #a9a9a9;
+            padding: 15px;    
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!--Bagian Determinan-->
+    <div class="container">
+        <input type="number" id="nilaia" size="7" placeholder="Masukkan Nilai A">
+        <input type="number" id="nilaib" size="7" placeholder="Masukkan Nilai B">
+        <input type="number" id="nilaic" size="7" placeholder="Masukkan Nilai C">
+        <input type="text" id="hasil" size="4" placeholder="Hasil Determinan">
+        <button type="button" onclick="hasildet()">Submit Jawaban</button>
+        <p id="ket">Keterangan</p>
+    </div>
+  
+
+    <!--Bagian Semen-->
+    <div class="container">
+        <input type="text" id="merk" placeholder="Merk Semen"><br><br>
+        <input type="number" id="harga" placeholder="Harga per Sak"><br><br>
+        <input type="number" id="jumlah" placeholder="Jumlah Pembelian"><br><br>
+
+        <button type="button" onclick="hitungSemen()">Hitung Total</button>
+
+        <p id="outputMerk"></p>
+        <p id="outputJumlah"></p>
+        <p id="outputTotal"></p>
+    </div>
+
+    <script>
+    function hasildet() {
+        var na = parseInt(document.getElementById("nilaia").value)
+        var nb = parseInt(document.getElementById("nilaib").value)
+        var nc = parseInt(document.getElementById("nilaic").value)
+        var hasil = (nb * nb) - 4 * na * nc
+        document.getElementById("hasil").value = hasil;
+        if (hasil > 0) {
+            document.getElementById("ket").innerHTML="Keterangan: Berada di atas garis kurva"
+        }
+        else if (hasil == 0) {
+            document.getElementById("ket").innerHTML="Keterangan: Berada di garis kurva"
+        }
+        else {
+            document.getElementById("ket").innerHTML="Keterangan: Berada di bawah garis kurva"
+        }
+    }
+
+    function hitungSemen() {
+        var merk = document.getElementById("merk").value;
+        var harga = parseInt(document.getElementById("harga").value);
+        var jumlah = parseInt(document.getElementById("jumlah").value);
+
+        var total = harga * jumlah;
+
+        if (jumlah < 10) {
+            total = total + 5000; // ongkir
+        } else {
+            total = total - (0.05 * total); // diskon 5%
+        }
+        document.getElementById("outputMerk").innerHTML =
+            "Merk Semen : " + merk;
+
+        document.getElementById("outputJumlah").innerHTML =
+            "Jumlah Pembelian : " + jumlah + " Sak";
+
+        document.getElementById("outputTotal").innerHTML =
+        "Total Biaya : Rp " + total;
+    }
+    </script>
+</body>
+</html>
